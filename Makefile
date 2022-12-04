@@ -1,10 +1,10 @@
-NAME	:= so_long
-CFLAGS	:= -Wextra -Wall -Werror
-CFLAGS	+= $(if $(FSAN) , -fsanitize=address -g)
-CFLAGS	+= $(if $(DEBUG) , -g)
-LIBMLX	:= ./lib/MLX
-LIBFT	:= ./lib/libft
-MLXFLAGS	:= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -g
+NAME		:= so_long
+CFLAGS		:= -Wextra -Wall -Werror
+CFLAGS		+= $(if $(FSAN) , -fsanitize=address -g)
+CFLAGS		+= $(if $(DEBUG) , -g)
+LIBMLX		:= ./lib/MLX
+LIBFT		:= ./lib/libft
+MLXFLAGS:= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -g
 
 HEADERS	:= $(addprefix -I , \
 			  libft \

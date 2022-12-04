@@ -6,7 +6,7 @@
 /*   By: edawood <edawood@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:36:35 by edawood           #+#    #+#             */
-/*   Updated: 2022/12/04 15:12:16 by edawood          ###   ########.fr       */
+/*   Updated: 2022/12/04 17:03:57 by edawood          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static bool	check_map_content(t_image_data *data, t_error *errors)
 	i = 0;
 	errors->invalid_map_input = false;
 	errors->no_cpe = false;
+	data->player_count = 0;
 	if (!(ft_strchr(data->map_data, 'C')) || !(ft_strchr(data->map_data, 'E')) \
 	|| !(ft_strchr(data->map_data, 'P')))
 		errors->no_cpe = true;
@@ -101,6 +102,10 @@ char	**check_map(t_image_data *data, int32_t fd)
 
 	errors.error = false;
 	errors.c_or_e_unreachable = false;
+	data->collectibles = 0;
+	data->exits = 0;
+	data->reachable_c = 0;
+	data->reachable_e = 0;
 	data->map_data = read_file(fd);
 	if (!data->map_data || data->map_data[0] == '\0')
 		return (ft_putendl_fd("Error\nEmpty map", STDOUT), NULL);

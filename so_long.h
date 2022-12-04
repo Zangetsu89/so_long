@@ -6,7 +6,7 @@
 /*   By: edawood <edawood@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:01:25 by edawood           #+#    #+#             */
-/*   Updated: 2022/12/01 21:20:07 by edawood          ###   ########.fr       */
+/*   Updated: 2022/12/04 17:16:38 by edawood          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 
 # ifndef BUFFERSIZE
-#  define BUFFERSIZE 30
+#  define BUFFERSIZE 1
 # endif
 
 # define PIXELS 32
