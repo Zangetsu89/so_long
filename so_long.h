@@ -6,7 +6,7 @@
 /*   By: edawood <edawood@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:01:25 by edawood           #+#    #+#             */
-/*   Updated: 2022/12/04 17:16:38 by edawood          ###   ########.fr       */
+/*   Updated: 2022/12/07 13:39:04 by edawood          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_image_data {
 	size_t			map_name_len;
 	size_t			ext_len;
 	int32_t			fd;
+	int32_t			buflen;
 	int32_t			width;
 	int32_t			height;
 	char			*map_data;
@@ -88,8 +89,8 @@ typedef struct s_image_data {
 	mlx_texture_t	*textures[IMG_COUNT];
 }				t_image_data;
 
-char	*read_file(int32_t fd);
-char	**check_map(t_image_data *data, int32_t fd);
+char	*read_file(t_image_data *data);
+char	**check_map(t_image_data *data);
 void	flood_fill(ssize_t y, ssize_t x, t_image_data *data, char **map);
 void	collectibles_count(t_image_data *data, char **map);
 char	**copyingmap(t_image_data *data);
@@ -108,6 +109,7 @@ void	collect(t_image_data *data, size_t x, size_t y);
 void	movecounter(t_image_data *data, size_t y, size_t x);
 
 void	error_handler(t_image_data *data, t_error *errors);
+void	init_errors(t_error *errors);
 void	free_2d(char **map);
 void	terminate(t_image_data *data);
 #endif

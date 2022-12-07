@@ -6,12 +6,21 @@
 /*   By: edawood <edawood@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:29:18 by edawood           #+#    #+#             */
-/*   Updated: 2022/12/01 21:23:15 by edawood          ###   ########.fr       */
+/*   Updated: 2022/12/07 13:38:28 by edawood          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
-#include <stdio.h>
+
+void	init_errors(t_error *errors)
+{
+	errors->error = false;
+	errors->no_cpe = false;
+	errors->invalid_map_input = false;
+	errors->not_rectangular = false;
+	errors->no_walls = false;
+	errors->c_or_e_unreachable = false;
+}
 
 void	error_handler(t_image_data *data, t_error *errors)
 {

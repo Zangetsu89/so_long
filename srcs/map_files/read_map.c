@@ -6,34 +6,34 @@
 /*   By: edawood <edawood@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:34:23 by edawood           #+#    #+#             */
-/*   Updated: 2022/12/04 15:26:30 by edawood          ###   ########.fr       */
+/*   Updated: 2022/12/07 13:37:00 by edawood          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-char	*read_file(int32_t fd)
+char	*read_file(t_image_data *data)
 {
-	int32_t	buflen;
+	// int32_t	buflen;
 	char	*line;
 	char	*buf;
 
-	buflen = 1;
+	// buflen = 1;
 	line = ft_calloc(1, 1);
 	buf = malloc(BUFFERSIZE + 1 * sizeof(char));
-	while (buflen > 0)
+	while (data->buflen > 0)
 	{
-		buflen = read(fd, buf, BUFFERSIZE);
-		if (buflen <= 0)
+		data->buflen = read(data->fd, buf, BUFFERSIZE);
+		if (data->buflen <= 0)
 			free (buf);
-		if (buflen == 0)
+		if (data->buflen == 0)
 			return (line);
-		if (buflen < 0)
+		if (data->buflen < 0)
 			return (NULL);
-		buf[buflen] = '\0';
+		buf[data->buflen] = '\0';
 		line = ft_strjoin(line, buf);
 	}
-	close(fd);
+	close(data->fd);
 	return (line);
 }
 

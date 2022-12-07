@@ -6,7 +6,7 @@
 /*   By: edawood <edawood@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:33:42 by edawood           #+#    #+#             */
-/*   Updated: 2022/12/04 17:13:35 by edawood          ###   ########.fr       */
+/*   Updated: 2022/12/07 13:39:18 by edawood          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,34 @@
 // 	system("leaks so_long");
 // }
 
+void	init_data(t_image_data *data)
+{
+	data->buflen = 1;
+	data->fd = 0;
+	data->map_name_len = 0;
+	data->ext_len = 0;
+	data->width = 0;
+	data->height = 0;
+	data->row_len = 0;
+	data->rows_count = 0;
+	data->player_count = 0;
+	data->collectibles = 0;
+	data->c_collected = 0;
+	data->exits = 0;
+	data->reachable_c = 0;
+	data->reachable_e = 0;
+	data->old_x = 0;
+	data->old_y = 0;
+	data->y = 0;
+	data->x = 0;
+}
+
 int32_t	main(int32_t argc, char **argv)
 {
 	t_image_data	data;
 
 	// atexit(hookleak);
+	init_data(&data);
 	if (argc == 2)
 	{
 		data.fd = open(argv[1], O_RDONLY);
@@ -32,7 +55,7 @@ int32_t	main(int32_t argc, char **argv)
 		data.ext_len = ft_strlen(data.ext);
 		if (!check_ext(argv[1], ".ber"))
 			return (EXIT_FAILURE);
-		if (!check_map(&data, data.fd))
+		if (!check_map(&data))
 			return (ft_putendl_fd("Error\nInvalid map input", STDOUT) \
 					, EXIT_FAILURE);
 	}
