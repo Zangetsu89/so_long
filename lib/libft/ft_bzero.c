@@ -6,11 +6,12 @@
 /*   By: edawood <edawood@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:31:25 by edawood           #+#    #+#             */
-/*   Updated: 2022/10/16 13:46:59 by edawood          ###   ########.fr       */
+/*   Updated: 2022/12/04 18:06:47 by edawood          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdint.h>
 
 void	ft_bzero(void *s, size_t n)
 {

@@ -6,12 +6,11 @@
 /*   By: edawood <edawood@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:36:35 by edawood           #+#    #+#             */
-/*   Updated: 2022/12/07 13:39:39 by edawood          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:16:35 by edawood          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
-#include <stdio.h>
 
 void	flood_fill(ssize_t y, ssize_t x, t_image_data *data, char **map)
 {
@@ -112,7 +111,9 @@ char	**check_map(t_image_data *data)
 	error_handler(data, &errors);
 	if (errors.error == true)
 		return (free_2d(data->map), NULL);
-	flood_fill(data->y, data->x, data, copyingmap(data));
+	data->map_copy = copyingmap(data);
+	flood_fill(data->y, data->x, data, data->map_copy);
+	free_2d(data->map_copy);
 	if (data->collectibles != data->reachable_c || \
 	data->exits != data->reachable_e)
 		errors.c_or_e_unreachable = true;

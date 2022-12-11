@@ -6,7 +6,7 @@
 /*   By: edawood <edawood@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:34:23 by edawood           #+#    #+#             */
-/*   Updated: 2022/12/07 13:37:00 by edawood          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:15:03 by edawood          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,29 @@
 
 char	*read_file(t_image_data *data)
 {
-	// int32_t	buflen;
-	char	*line;
 	char	*buf;
 
-	// buflen = 1;
-	line = ft_calloc(1, 1);
-	buf = malloc(BUFFERSIZE + 1 * sizeof(char));
+	data->line = ft_calloc(1, 1);
+	if (!data->line)
+		return (NULL);
+	buf = malloc((BUFFERSIZE + 1) * sizeof(char));
+	if (!buf)
+		return (free(data->line), NULL);
 	while (data->buflen > 0)
 	{
 		data->buflen = read(data->fd, buf, BUFFERSIZE);
-		if (data->buflen <= 0)
-			free (buf);
-		if (data->buflen == 0)
-			return (line);
-		if (data->buflen < 0)
+		if (data->buflen == -1)
+		{
+			free(data->line);
+			free(buf);
 			return (NULL);
+		}
 		buf[data->buflen] = '\0';
-		line = ft_strjoin(line, buf);
+		data->line = ft_strjoin(data->line, buf);
 	}
+	free(buf);
 	close(data->fd);
-	return (line);
+	return (data->line);
 }
 
 char	**copyingmap(t_image_data *data)

@@ -6,15 +6,11 @@
 /*   By: edawood <edawood@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:33:42 by edawood           #+#    #+#             */
-/*   Updated: 2022/12/07 13:39:18 by edawood          ###   ########.fr       */
+/*   Updated: 2022/12/07 13:31:38 by edawood          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-// void	hookleak (void)
-// {
-// 	system("leaks so_long");
-// }
 
 void	init_data(t_image_data *data)
 {
@@ -42,7 +38,6 @@ int32_t	main(int32_t argc, char **argv)
 {
 	t_image_data	data;
 
-	// atexit(hookleak);
 	init_data(&data);
 	if (argc == 2)
 	{

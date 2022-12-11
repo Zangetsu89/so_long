@@ -6,7 +6,7 @@
 /*   By: edawood <edawood@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 17:01:25 by edawood           #+#    #+#             */
-/*   Updated: 2022/12/07 13:39:04 by edawood          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:00:41 by edawood          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # include "./lib/libft/libft.h"
 # include <stdbool.h>
 # include <fcntl.h>
+# include <stdlib.h>
 
 # ifndef BUFFERSIZE
-#  define BUFFERSIZE 1
+#  define BUFFERSIZE 30
 # endif
 
 # define PIXELS 32
@@ -60,10 +61,12 @@ typedef enum string
 
 typedef struct s_image_data {
 	char			*ext;
+	char			**map_copy;
 	size_t			map_name_len;
 	size_t			ext_len;
 	int32_t			fd;
 	int32_t			buflen;
+	char			*line;
 	int32_t			width;
 	int32_t			height;
 	char			*map_data;
@@ -98,6 +101,7 @@ void	get_player_position(t_image_data *data, char **map);
 bool	check_ext(char *file_name, char *ext);
 
 bool	graphics(t_image_data *data);
+bool	init_mlx(t_image_data *data);
 bool	put_backg(t_image_data *data);
 bool	images_to_window(t_image_data *data, size_t i);
 void	free_close_window(t_image_data *data, void *var, char *str);
